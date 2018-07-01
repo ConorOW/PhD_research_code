@@ -1,4 +1,8 @@
+# We used freesurfer segmentations from the recon-all command to extract wm and ventricles. 
+# These were converted to fsl highres space and then aligned to functional space for 
+# timeseries extraction. This was performed before I had knowledge of how to extract these masks from FSL.
 # ${j} is the folder name for each participant (P001; P002; ...;)
+
 # Extract the T1, wm and ventricles mask from participants freesurfer -recon all
 # This is to be run from within each subjects working directory
 
