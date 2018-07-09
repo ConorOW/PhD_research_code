@@ -1,6 +1,9 @@
 #!/bin/sh
 
-#echo "subjid,L_caud_vol,R_caud_vol,L_puta_vol,R_puta_vol,L_thal_vol,R_thal_vol" >> ./first_volumes.csv ;
+# This script was run on the output of the FSL first program, to extract volumes (mm3) of 
+# each of the structures of interest for volumetric comparisons 
+
+echo "subjid,L_caud_vol,R_caud_vol,L_puta_vol,R_puta_vol,L_thal_vol,R_thal_vol" >> ./first_volumes.csv ;
 
 for j in $@ ; do
 
