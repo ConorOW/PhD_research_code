@@ -2,6 +2,7 @@
 # These were converted to fsl highres space and then aligned to functional space for 
 # timeseries extraction. This was performed before I had knowledge of how to extract these masks from FSL.
 # ${j} is the folder name for each participant (P001; P002; ...;)
+# RAW_FUNC.ica is the name of the folder that has the preprocessing and ICA output from FSL.
 
 # Extract the T1, wm and ventricles mask from participants freesurfer -recon all
 # This is to be run from within each subjects working directory
@@ -40,6 +41,8 @@
   -out ./ventricles_highres.nii.gz \
   -applyxfm ;
 
+# This step thresholds the images
+
   fslmaths \
   ./wm_highres.nii.gz \
   -thr 0.9 -bin \
@@ -65,6 +68,8 @@
   -init ./RAW_FUNC.ica/reg/highres2example_func.mat \
   -applyxfm ;
 
+# We also eroded the images to reduce partial volume effects 
+
   fslmaths \
   ./wm_lowres \
   -ero -bin \
@@ -75,7 +80,7 @@
   -ero -bin \
   ./ventricles_lowres_ero ;
 
-# Extract timeseries from within thalamus masks, ventricles and wm
+# Extract timeseries from within ventricle and wm masks
 # PROC_FUNC is the name of the preprocessed fMRI data
 
   fslmeants \
